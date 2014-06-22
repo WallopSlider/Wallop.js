@@ -102,23 +102,20 @@ WallopSlider = (function() {
     }
   };
 
-  // Attach click handlers
+  // Attach click and touch handlers
   WallopProto.bindEvents = function () {
     var _this = this;
 
-    // debugger;
     this.buttonPrevious.addEventListener('click', function () { _this.onPreviousButtonClicked(); });
     this.buttonNext.addEventListener('click', function () { _this.onNextButtonClicked(); });
 
     swipedetect(this.$selector, function (swipedir){
-     // swipedir contains either "none", "left", "right", "top", or "down"
-     if (swipedir =='left') {
+      if (swipedir =='left') {
         _this.onNextButtonClicked();
-     }
-     if (swipedir =='right') {
+      }
+      if (swipedir =='right') {
         _this.onPreviousButtonClicked();
-     }
-
+      }
     })
   };
 
