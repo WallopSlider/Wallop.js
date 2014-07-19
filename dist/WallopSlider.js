@@ -49,12 +49,12 @@ WallopSlider = (function() {
 
   var WallopProto = Wallop.prototype;
 
-  // Update prev/next disabled attribute
+  // Update prev/next readonly attribute
   WallopProto.updatePagination = function () {
     if ((this.currentItemIndex + 1) === this.allItemsArrayLength && this.options.wSCarousel !== true) {
-      this.buttonNext.setAttribute('disabled', 'disabled');
+      this.buttonNext.setAttribute('readonly', 'readonly');
     } else if (this.currentItemIndex === 0) {
-      this.buttonPrevious.setAttribute('disabled', 'disabled');
+      this.buttonPrevious.setAttribute('readonly', 'readonly');
     }
   };
 
@@ -65,8 +65,8 @@ WallopSlider = (function() {
     removeClass($$(this.options.wSHideNextClass)[0], this.options.wSHideNextClass);
     removeClass($$(this.options.wSShowPreviousClass)[0], this.options.wSShowPreviousClass);
     removeClass($$(this.options.wSShowNextClass)[0], this.options.wSShowNextClass);
-    this.buttonPrevious.removeAttribute('disabled');
-    this.buttonNext.removeAttribute('disabled');
+    this.buttonPrevious.removeAttribute('readonly');
+    this.buttonNext.removeAttribute('readonly');
   };
 
   // Method to add classes to the right elements depending on the index passed
