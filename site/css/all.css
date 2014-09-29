@@ -122,14 +122,14 @@ pre {
 .btn:hover {
   cursor: pointer;
 }
-.btn[disabled] {
+.btn[readonly] {
   opacity: .4;
 }
-.btn[disabled], .btn[disabled]:hover {
+.btn[readonly], .btn[readonly]:hover {
   cursor: default;
 }
 @media only screen and (min-width: 480px) {
-  .btn[disabled] {
+  .btn[readonly] {
     visibility: hidden;
   }
 }

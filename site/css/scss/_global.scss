@@ -122,7 +122,7 @@ pre {
     cursor: pointer;
   }
 
-  &[disabled] {
+  &[readonly] {
     &,
     &:hover {
       cursor: default;
