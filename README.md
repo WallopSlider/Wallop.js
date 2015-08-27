@@ -202,3 +202,5 @@ Plese see [CONTRIBUTING](#).
 
 ## Licensing
 MIT © 2015 [Pedro Duarte](http://pedroduarte.me)
+
+test edit
