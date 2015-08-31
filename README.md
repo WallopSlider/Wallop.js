@@ -203,7 +203,7 @@ Due to its simplicity, wallop has a few limitations. For example, it is not poss
 If you want a slider which provides all these options, I highly recommend David Desandro's [Flickity](http://flickity.metafizzy.co/).
 
 ## Contributing
-Plese see [CONTRIBUTING](#).
+Plese see [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
 
 ## Licensing
 MIT © 2015 [Pedro Duarte](http://pedroduarte.me)
