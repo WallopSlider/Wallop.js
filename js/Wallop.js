@@ -99,9 +99,16 @@
 
   // Method to add classes to the right elements depending on the index passed
   WS.goTo = function (index) {
+    // Just return if the supplied index is same as the current item index.
+    if (index === this.currentItemIndex) { return;}
+
     // Check if it's a carousel and if so, change index to be last item when clicking previous on first item
-    if (this.options.carousel && index === -1) { index = this.allItemsArrayLength - 1; }
-    else if (index > this.allItemsArrayLength || index < 0) { return; }
+    if (this.options.carousel && index === -1) {
+      index = this.allItemsArrayLength - 1;
+    }
+    else if (index > this.allItemsArrayLength || index < 0) {
+      return;
+    }
 
     this.removeAllHelperSettings();
 
