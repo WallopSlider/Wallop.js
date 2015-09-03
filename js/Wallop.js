@@ -99,18 +99,25 @@
 
   // Method to add classes to the right elements depending on the index passed
   WS.goTo = function (index) {
-    // Check if it's a carousel and if so, change index to be last item when clicking previous on first item
-    if (this.options.carousel && index === -1) { index = this.allItemsArrayLength - 1; }
-    else if (index > this.allItemsArrayLength || index < 0) { return; }
+    // If the index number is same as the current index don't change any classes.
+    if (index !== this.currentItemIndex) {
+      // Check if it's a carousel and if so, change index to be last item when clicking previous on first item
+      if (this.options.carousel && index === -1) {
+        index = this.allItemsArrayLength - 1;
+      }
+      else if (index > this.allItemsArrayLength || index < 0) {
+        return;
+      }
 
-    this.removeAllHelperSettings();
+      this.removeAllHelperSettings();
 
-    addClass(this.allItemsArray[this.currentItemIndex], index > this.currentItemIndex ? this.options.hidePreviousClass : this.options.hideNextClass);
-    addClass(this.allItemsArray[index], this.options.currentItemClass + ' ' + (index > this.currentItemIndex ? this.options.showNextClass : this.options.showPreviousClass));
+      addClass(this.allItemsArray[this.currentItemIndex], index > this.currentItemIndex ? this.options.hidePreviousClass : this.options.hideNextClass);
+      addClass(this.allItemsArray[index], this.options.currentItemClass + ' ' + (index > this.currentItemIndex ? this.options.showNextClass : this.options.showPreviousClass));
 
-    this.currentItemIndex = index;
+      this.currentItemIndex = index;
 
-    this.updateButtonStates();
+      this.updateButtonStates();
+    }
 
     this.event.detail.currentItemIndex = this.currentItemIndex;
     this.$selector.dispatchEvent(this.event);
