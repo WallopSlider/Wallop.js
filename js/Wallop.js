@@ -192,12 +192,12 @@
 
   function addClass(element, className) {
     if (!element) { return; }
-    element.className = element.className.replace(/\s+$/gi, '') + ' ' + className;
+    element.className = (element.className + ' ' + className).trim();
   }
 
   function removeClass(element, className) {
     if (!element) { return; }
-    element.className = element.className.replace(className, '');
+    element.className = element.className.replace(className, '').trim();
   }
 
   function extend(origOptions, userOptions){
