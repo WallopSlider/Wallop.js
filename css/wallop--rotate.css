@@ -30,7 +30,9 @@
   animation: rotateToRight 450ms cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 
-.Wallop--rotate .Wallop-item--hidePrevious { z-index: 2; }
+.Wallop--rotate .Wallop-item--hidePrevious,
+.Wallop--rotate .Wallop-item--hideNext { z-index: 2; }
+.Wallop--rotate .Wallop-item--showPrevious,
 .Wallop--rotate .Wallop-item--showNext { z-index: 1; }
 
 @-webkit-keyframes rotateToLeft {

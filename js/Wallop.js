@@ -54,10 +54,13 @@
     this.createCustomEvent();
 
     // If there is no active item, start at 0
-    if (this.currentItemIndex < 0) {
+    if (this.currentItemIndex === -1) {
       this.currentItemIndex = 0;
       addClass(this.allItemsArray[this.currentItemIndex], this.options.currentItemClass);
     }
+
+    // Update button states to make sure the correct state is set on initialization
+    this.updateButtonStates();
 
     // Wrapped in timeout function so event can
     // be listened from outside at anytime
@@ -74,11 +77,11 @@
 
   // Update prev/next disabled attribute
   WS.updateButtonStates = function () {
-    if (!this.buttonPrevious && !this.buttonNext) { return; }
+    if ((!this.buttonPrevious && !this.buttonNext) || this.options.carousel) { return; }
 
-    if (this.currentItemIndex === this.allItemsArrayLength && this.options.carousel !== true) {
+    if (this.currentItemIndex === this.allItemsArrayLength) {
       this.buttonNext.setAttribute('disabled', 'disabled');
-    } else if (this.currentItemIndex === 0 && this.options.carousel !== true) {
+    } else if (this.currentItemIndex === 0) {
       this.buttonPrevious.setAttribute('disabled', 'disabled');
     }
   };
@@ -107,8 +110,9 @@
 
     this.removeAllHelperSettings();
 
-    addClass(this.allItemsArray[this.currentItemIndex], index > this.currentItemIndex ? this.options.hidePreviousClass : this.options.hideNextClass);
-    addClass(this.allItemsArray[index], this.options.currentItemClass + ' ' + (index > this.currentItemIndex ? this.options.showNextClass : this.options.showPreviousClass));
+    var isForwards = (index > this.currentItemIndex || index === 0 && this.currentItemIndex === this.allItemsArrayLength) && !(index === this.allItemsArrayLength && this.currentItemIndex === 0);
+    addClass(this.allItemsArray[this.currentItemIndex], isForwards ? this.options.hidePreviousClass : this.options.hideNextClass);
+    addClass(this.allItemsArray[index], this.options.currentItemClass + ' ' + (isForwards ? this.options.showNextClass : this.options.showPreviousClass));
 
     this.currentItemIndex = index;
 

@@ -29,7 +29,7 @@
 
 .Wallop--vertical-slide .Wallop-item--hidePrevious,
 .Wallop--vertical-slide .Wallop-item--hideNext {
-  display: block;
+  visibility: visible;
 }
 
 .Wallop--vertical-slide .Wallop-item--hidePrevious {

@@ -21,8 +21,10 @@
   that the item that is going to be the previous one
   has a higer z-index that the next one
  */
-.Wallop--scale .Wallop-item--hidePrevious { z-index: 2; }
-.Wallop--scale .Wallop-item--showNext { z-index: 1; }
+ .Wallop--scale .Wallop-item--hidePrevious,
+ .Wallop--scale .Wallop-item--hideNext { z-index: 2; }
+ .Wallop--scale .Wallop-item--showPrevious,
+ .Wallop--scale .Wallop-item--showNext { z-index: 1; }
 
 /*==========  SCALE ANIMATIONS  ==========*/
 @-webkit-keyframes scaleOut {
