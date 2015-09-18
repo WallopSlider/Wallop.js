@@ -45,8 +45,8 @@
 
     // "Global vars"
     this.allItemsArray = Array.prototype.slice.call(this.$selector.querySelectorAll(' .' + this.options.itemClass));
-    this.allItemsArrayLength = this.allItemsArray.length - 1; // otherwise starts from 1. weird?
     this.currentItemIndex = this.allItemsArray.indexOf(this.$selector.querySelector(' .' + this.options.currentItemClass));
+    this.lastItemIndex = this.allItemsArray.length - 1;
     this.buttonPrevious = this.$selector.querySelector(' .' + this.options.buttonPreviousClass);
     this.buttonNext = this.$selector.querySelector(' .' + this.options.buttonNextClass);
 
@@ -79,7 +79,7 @@
   WS.updateButtonStates = function () {
     if ((!this.buttonPrevious && !this.buttonNext) || this.options.carousel) { return; }
 
-    if (this.currentItemIndex === this.allItemsArrayLength) {
+    if (this.currentItemIndex === this.lastItemIndex) {
       this.buttonNext.setAttribute('disabled', 'disabled');
     } else if (this.currentItemIndex === 0) {
       this.buttonPrevious.setAttribute('disabled', 'disabled');
@@ -105,12 +105,12 @@
     if (index === this.currentItemIndex) { return; }
 
     // Check if it's a carousel and if so, change index to be last item when clicking previous on first item
-    if (this.options.carousel && index === -1) { index = this.allItemsArrayLength - 1; }
-    else if (index > this.allItemsArrayLength || index < 0) { return; }
+    if (this.options.carousel && index === -1) { index = this.lastItemIndex - 1; }
+    else if (index > this.lastItemIndex || index < 0) { return; }
 
     this.removeAllHelperSettings();
 
-    var isForwards = (index > this.currentItemIndex || index === 0 && this.currentItemIndex === this.allItemsArrayLength) && !(index === this.allItemsArrayLength && this.currentItemIndex === 0);
+    var isForwards = (index > this.currentItemIndex || index === 0 && this.currentItemIndex === this.lastItemIndex) && !(index === this.lastItemIndex && this.currentItemIndex === 0);
     addClass(this.allItemsArray[this.currentItemIndex], isForwards ? this.options.hidePreviousClass : this.options.hideNextClass);
     addClass(this.allItemsArray[index], this.options.currentItemClass + ' ' + (isForwards ? this.options.showNextClass : this.options.showPreviousClass));
 
@@ -125,7 +125,7 @@
   // Previous item handler
   WS.previous = function () {
     if (this.options.carousel && this.currentItemIndex === 0) {
-      this.goTo(this.allItemsArrayLength);
+      this.goTo(this.lastItemIndex);
     } else {
       this.goTo(this.currentItemIndex - 1);
     }
@@ -133,7 +133,7 @@
 
   // Next item handler
   WS.next = function () {
-    if (this.currentItemIndex >= this.allItemsArrayLength && this.options.carousel === true) {
+    if (this.currentItemIndex >= this.lastItemIndex && this.options.carousel === true) {
       this.goTo(0);
     } else {
       this.goTo(this.currentItemIndex + 1);
