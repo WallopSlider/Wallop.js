@@ -104,9 +104,12 @@
   WS.goTo = function (index) {
     if (index === this.currentItemIndex) { return; }
 
-    // Check if it's a carousel and if so, change index to be last item when clicking previous on first item
-    if (this.options.carousel && index === -1) { index = this.lastItemIndex - 1; }
-    else if (index > this.lastItemIndex || index < 0) { return; }
+    // Fix the index if it's out of bounds and carousel is enabled
+    index = index === -1 && this.options.carousel ? this.lastItemIndex : index;
+    index = index === this.lastItemIndex + 1 && this.options.carousel ? 0 : index;
+
+    // Exit when index is out of bounds
+    if (index < 0 || index > this.lastItemIndex) { return; }
 
     this.removeAllHelperSettings();
 
@@ -124,20 +127,12 @@
 
   // Previous item handler
   WS.previous = function () {
-    if (this.options.carousel && this.currentItemIndex === 0) {
-      this.goTo(this.lastItemIndex);
-    } else {
-      this.goTo(this.currentItemIndex - 1);
-    }
+    this.goTo(this.currentItemIndex - 1);
   };
 
   // Next item handler
   WS.next = function () {
-    if (this.currentItemIndex >= this.lastItemIndex && this.options.carousel === true) {
-      this.goTo(0);
-    } else {
-      this.goTo(this.currentItemIndex + 1);
-    }
+    this.goTo(this.currentItemIndex + 1);
   };
 
   // Attach click handlers
