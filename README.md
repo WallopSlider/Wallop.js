@@ -6,7 +6,8 @@ wallop is a minimal 4kb library for showing & hiding things.
 
 > ❗️**Important note**️<br>
 > Version 1 of *WallopSlider* is not compatible with version 2+.<br>
-> If you are still v1, please note that I am no longer supporting it. Documentation, etc has been moved to [this branch](https://github.com/peduarte/wallop/tree/v1).
+> If you are still using v1, please note that I am no longer supporting it.<br>
+> Documentation, etc. has been moved to [this branch](https://github.com/peduarte/wallop/tree/v1).
 
 ## About
 In a nutshell, wallop takes a collection of HTML elements and Previous & Next buttons, and adds helper HTML classes in the correct elements based on whether you want to navigate forwards or backwards.
@@ -46,7 +47,7 @@ $ bower install wallop
 ```
 
 Download<br>
-You can download the latest or checkout all the releases [from this page](https://github.com/peduarte/wallop/releases)
+You can download the latest version or checkout all the releases [here](https://github.com/peduarte/wallop/releases).
 
 ## Usage
 Once you have downloaded Wallop, the first thing you need to do is include the CSS and the JavaScript.
@@ -98,7 +99,7 @@ Once you have downloaded Wallop, the first thing you need to do is include the C
 ## Adding animations
 Wallop has no animations by default, so if you want to animate the slides, you need to extend the default `.Wallop` class with an animation modifier and include the respective CSS into your HTML.<br>
 
-I have created a few basic animations which is ready for you to use out-of-the-box, you will find them in the `/css` directory.
+I have created a few basic animations which are ready for you to use out-of-the-box, you will find them in the `/css` directory.
 
 ### Including animation CSS
 ```html
@@ -142,7 +143,7 @@ Here's a list of options you can pass to Wallop
 ## API
 Wallop offers a basic API for you to use, so you can control it from your own buttons or gestures.
 
-### goTo
+### goTo(index)
 This allows you to go to a specific slide index.
 ```js
 var slider = document.querySelector('.Wallop');
@@ -154,7 +155,7 @@ Wallop.goTo(1);
 > **#protip**<br>
 > index starts at 0 👌
 
-### next
+### next()
 This allows you to go to the next slide
 ```js
 var slider = document.querySelector('.Wallop');
@@ -164,7 +165,7 @@ var Wallop = new Wallop(slider);
 Wallop.next();
 ```
 
-### previous
+### previous()
 This allows you to go to the previous slide
 ```js
 var slider = document.querySelector('.Wallop');
@@ -204,7 +205,7 @@ Due to its simplicity, wallop has a few limitations. For example, it is not poss
 If you want a slider which provides all these options, I highly recommend David Desandro's [Flickity](http://flickity.metafizzy.co/).
 
 ## Contributing
-Plese see [CONTRIBUTING.md](CONTRIBUTING.md) for more information.
+Plese see [CONTRIBUTING.md](https://github.com/jackmu95/wallop/blob/master/CONTRIBUTING.md) for more information.
 
 ## Licensing
 MIT © 2015 [Pedro Duarte](http://pedroduarte.me)
