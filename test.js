@@ -86,7 +86,7 @@ test('Carousel is working', function(assert) {
   var slider = document.querySelector('.Wallop5');
   var wallop = new Wallop(slider);
 
-  wallop.goTo(wallop.allItemsArrayLength);
+  wallop.goTo(wallop.lastItemIndex);
   wallop.next();
 
   var nextItem = wallop.allItemsArray[wallop.currentItemIndex];
