@@ -1,18 +1,15 @@
 /**
 * Wallop.js
 *
-* @fileoverview Minimal Slider with CSS animation
+* @fileoverview Minimal JS library to show & hide things
 *
 * @author Pedro Duarte
 * @author http://pedroduarte.me/wallop
 *
 */
 (function(global){
-
   function Wallop(selector, options) {
-    if (!selector) {
-      throw new Error('Selector missing, eg: new Wallop(".selector")');
-    }
+    if (!selector) { throw new Error('Missing selector. Refer to Usage documentation: https://github.com/peduarte/wallop#javascript'); }
 
     for (var i = 0; i < selectorPool.length; i++) {
       if (selectorPool[i] === selector) {
@@ -32,21 +29,19 @@
       carousel: true
     };
 
-
     if (selector.length > 0) {
-      throw new Error('Selector cannot be an array');
+      throw new Error('Selector cannot be an array, Refer to Usage documentation: https://github.com/peduarte/wallop#javascript');
     } else {
       this.$selector = selector;
     }
-
 
     this.options = extend(this.options, options);
     this.event = null;
 
     // "Global vars"
     this.allItemsArray = Array.prototype.slice.call(this.$selector.querySelectorAll(' .' + this.options.itemClass));
-    this.allItemsArrayLength = this.allItemsArray.length - 1; // otherwise starts from 1. weird?
     this.currentItemIndex = this.allItemsArray.indexOf(this.$selector.querySelector(' .' + this.options.currentItemClass));
+    this.lastItemIndex = this.allItemsArray.length - 1;
     this.buttonPrevious = this.$selector.querySelector(' .' + this.options.buttonPreviousClass);
     this.buttonNext = this.$selector.querySelector(' .' + this.options.buttonNextClass);
 
@@ -77,9 +72,9 @@
 
   // Update prev/next disabled attribute
   WS.updateButtonStates = function () {
-    if ((!this.buttonPrevious && !this.buttonNext) || this.options.carousel) { return; }
+    if ((!this.buttonPrevious && !this.buttonNext) || this.options.carousel) { return; }
 
-    if (this.currentItemIndex === this.allItemsArrayLength) {
+    if (this.currentItemIndex === this.lastItemIndex) {
       this.buttonNext.setAttribute('disabled', 'disabled');
     } else if (this.currentItemIndex === 0) {
       this.buttonPrevious.setAttribute('disabled', 'disabled');
@@ -104,13 +99,16 @@
   WS.goTo = function (index) {
     if (index === this.currentItemIndex) { return; }
 
-    // Check if it's a carousel and if so, change index to be last item when clicking previous on first item
-    if (this.options.carousel && index === -1) { index = this.allItemsArrayLength - 1; }
-    else if (index > this.allItemsArrayLength || index < 0) { return; }
+    // Fix the index if it's out of bounds and carousel is enabled
+    index = index === -1 && this.options.carousel ? this.lastItemIndex : index;
+    index = index === this.lastItemIndex + 1 && this.options.carousel ? 0 : index;
+
+    // Exit when index is out of bounds
+    if (index < 0 || index > this.lastItemIndex) { return; }
 
     this.removeAllHelperSettings();
 
-    var isForwards = (index > this.currentItemIndex || index === 0 && this.currentItemIndex === this.allItemsArrayLength) && !(index === this.allItemsArrayLength && this.currentItemIndex === 0);
+    var isForwards = (index > this.currentItemIndex || index === 0 && this.currentItemIndex === this.lastItemIndex) && !(index === this.lastItemIndex && this.currentItemIndex === 0);
     addClass(this.allItemsArray[this.currentItemIndex], isForwards ? this.options.hidePreviousClass : this.options.hideNextClass);
     addClass(this.allItemsArray[index], this.options.currentItemClass + ' ' + (isForwards ? this.options.showNextClass : this.options.showPreviousClass));
 
@@ -124,25 +122,16 @@
 
   // Previous item handler
   WS.previous = function () {
-    if (this.options.carousel && this.currentItemIndex === 0) {
-      this.goTo(this.allItemsArrayLength);
-    } else {
-      this.goTo(this.currentItemIndex - 1);
-    }
+    this.goTo(this.currentItemIndex - 1);
   };
 
   // Next item handler
   WS.next = function () {
-    if (this.currentItemIndex >= this.allItemsArrayLength && this.options.carousel === true) {
-      this.goTo(0);
-    } else {
-      this.goTo(this.currentItemIndex + 1);
-    }
+    this.goTo(this.currentItemIndex + 1);
   };
 
   // Attach click handlers
   WS.bindEvents = function () {
-
     selectorPool.push(this.$selector);
 
     var _this = this;
@@ -183,12 +172,7 @@
     });
   };
 
-
-
-  /**
-   * Helper functions
-   */
-
+  // Helper functions
   function $$(element) {
     if (!element) { return; }
     return document.querySelectorAll('.' + element);
@@ -233,5 +217,4 @@
     /* jslint sub:true */
     global['Wallop'] = Wallop;
   }
-
 }(this));

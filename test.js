@@ -86,14 +86,20 @@ test('Carousel is working', function(assert) {
   var slider = document.querySelector('.Wallop5');
   var wallop = new Wallop(slider);
 
-  wallop.goTo(wallop.allItemsArrayLength);
-  wallop.next();
+  wallop.goTo(wallop.lastItemIndex);
+  index = wallop.currentItemIndex;
 
+  assert.equal(index, 2, 'went to last item index');
+
+  wallop.next();
+  index = wallop.currentItemIndex;
+  assert.equal(index, 0, 'went to first item index from the last');
   var nextItem = wallop.allItemsArray[wallop.currentItemIndex];
   assert.equal(nextItem.classList.contains('Wallop-item--showNext'), true, 'carousel works forwards');
 
   wallop.previous();
-
+  index = wallop.currentItemIndex;
+  assert.equal(index, 2, 'went back to last item from first');
   var previousItem = wallop.allItemsArray[wallop.currentItemIndex];
   assert.equal(previousItem.classList.contains('Wallop-item--showPrevious'), true, 'carousel works backwards');
   assert.end();

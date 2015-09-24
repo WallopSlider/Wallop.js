@@ -1,6 +1,6 @@
 {
   "name": "wallop",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "wallop is a minimal 4kb library for showing & hiding things",
   "main": "js/Wallop.js",
   "scripts": {
