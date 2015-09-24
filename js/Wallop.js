@@ -38,12 +38,12 @@
     this.options = extend(this.options, options);
     this.event = null;
 
-    // "Global vars"
-    this.allItemsArray = Array.prototype.slice.call(this.$selector.querySelectorAll(' .' + this.options.itemClass));
-    this.currentItemIndex = this.allItemsArray.indexOf(this.$selector.querySelector(' .' + this.options.currentItemClass));
+    // Global variables
+    this.allItemsArray = Array.prototype.slice.call(this.$selector.querySelectorAll('.' + this.options.itemClass));
+    this.currentItemIndex = this.allItemsArray.indexOf(this.$selector.querySelector('.' + this.options.currentItemClass));
     this.lastItemIndex = this.allItemsArray.length - 1;
-    this.buttonPrevious = this.$selector.querySelector(' .' + this.options.buttonPreviousClass);
-    this.buttonNext = this.$selector.querySelector(' .' + this.options.buttonNextClass);
+    this.buttonPrevious = this.$selector.querySelector('.' + this.options.buttonPreviousClass);
+    this.buttonNext = this.$selector.querySelector('.' + this.options.buttonNextClass);
 
     this.bindEvents();
     this.createCustomEvent();
@@ -57,21 +57,20 @@
     // Update button states to make sure the correct state is set on initialization
     this.updateButtonStates();
 
-    // Wrapped in timeout function so event can
-    // be listened from outside at anytime
-    var _this = this;
+    // Wrapped in `setTimeout` function so event can be listened from outside at anytime
+    var self = this;
     setTimeout(function() {
-      _this.event.detail.currentItemIndex = _this.currentItemIndex;
-      _this.$selector.dispatchEvent(_this.event);
-    }, 0);
+      self.event.detail.currentItemIndex = self.currentItemIndex;
+      self.$selector.dispatchEvent(self.event);
+    });
   }
 
   var selectorPool = [];
 
   var WS = Wallop.prototype;
 
-  // Update prev/next disabled attribute
-  WS.updateButtonStates = function () {
+  // Update prev/next button `disabled` attribute
+  WS.updateButtonStates = function() {
     if ((!this.buttonPrevious && !this.buttonNext) || this.options.carousel) { return; }
 
     if (this.currentItemIndex === this.lastItemIndex) {
@@ -81,8 +80,8 @@
     }
   };
 
-  // Reset all settings by removing classes and attributes added by goTo() & updateButtonStates()
-  WS.removeAllHelperSettings = function () {
+  // Reset all settings by removing classes and attributes added by `goTo()` & `updateButtonStates()`
+  WS.removeAllHelperSettings = function() {
     removeClass(this.allItemsArray[this.currentItemIndex], this.options.currentItemClass);
     removeClass($$(this.options.hidePreviousClass)[0], this.options.hidePreviousClass);
     removeClass($$(this.options.hideNextClass)[0], this.options.hideNextClass);
@@ -96,7 +95,7 @@
   };
 
   // Method to add classes to the right elements depending on the index passed
-  WS.goTo = function (index) {
+  WS.goTo = function(index) {
     if (index === this.currentItemIndex) { return; }
 
     // Fix the index if it's out of bounds and carousel is enabled
@@ -121,51 +120,48 @@
   };
 
   // Previous item handler
-  WS.previous = function () {
+  WS.previous = function() {
     this.goTo(this.currentItemIndex - 1);
   };
 
   // Next item handler
-  WS.next = function () {
+  WS.next = function() {
     this.goTo(this.currentItemIndex + 1);
   };
 
   // Attach click handlers
-  WS.bindEvents = function () {
+  WS.bindEvents = function() {
     selectorPool.push(this.$selector);
 
-    var _this = this;
-
+    var self = this;
     if (this.buttonPrevious) {
-      this.buttonPrevious.addEventListener('click', function (event) {
+      this.buttonPrevious.addEventListener('click', function(event) {
         event.preventDefault();
-        _this.previous();
+        self.previous();
       });
     }
-
     if (this.buttonNext) {
-      this.buttonNext.addEventListener('click', function (event) {
+      this.buttonNext.addEventListener('click', function(event) {
         event.preventDefault();
-        _this.next();
+        self.next();
       });
     }
-
   };
 
   // Method so it is nicer for the user to use custom events
-  WS.on = function (eventName, callback) {
+  WS.on = function(eventName, callback) {
     this.$selector.addEventListener(eventName, function(event) {
       return callback(event);
     }, false);
   };
 
   // Create custom Event
-  WS.createCustomEvent = function () {
-    var _this = this;
+  WS.createCustomEvent = function() {
+    var self = this;
     this.event = new CustomEvent('change', {
       detail: {
-        wallopEl: _this.$selector,
-        currentItemIndex: Number(_this.currentItemIndex)
+        wallopEl: self.$selector,
+        currentItemIndex: Number(self.currentItemIndex)
       },
       bubbles: true,
       cancelable: true
@@ -195,25 +191,25 @@
     return extendOptions;
   }
 
-  // Pollyfill for CustomEvent() Constructor - thanks to Internet Explorer
+  // Pollyfill for `CustomEvent()` constructor
   // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent#Polyfill
   function CustomEvent(event, params) {
     params = params || { bubbles: false, cancelable: false, detail: undefined };
-    var evt = document.createEvent('CustomEvent');
-    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-    return evt;
+    var customEvent = document.createEvent('CustomEvent');
+    customEvent.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+    return customEvent;
   }
 
   CustomEvent.prototype = window.CustomEvent ? window.CustomEvent.prototype : {};
   window.CustomEvent = CustomEvent;
 
   // Exports to multiple environments
-  if(typeof define === 'function' && define.amd){ //AMD
-    define(function () { return Wallop; });
-  } else if (typeof module !== 'undefined' && module.exports){ //node
+  if (typeof define === 'function' && define.amd){ // AMD
+    define(function() { return Wallop; });
+  } else if (typeof module !== 'undefined' && module.exports) { // node
     module.exports = Wallop;
-  } else { // browser
-    // use string because of Google closure compiler ADVANCED_MODE
+  } else { // Browser
+    // Use a string because of Google closure compiler ADVANCED_MODE
     /* jslint sub:true */
     global['Wallop'] = Wallop;
   }
