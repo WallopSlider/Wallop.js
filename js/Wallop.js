@@ -57,7 +57,7 @@
     // Update button states to make sure the correct state is set on initialization
     this.updateButtonStates();
 
-    // Wrapped in timeout function so event can be listened from outside at anytime
+    // Wrapped in `setTimeout` function so event can be listened from outside at anytime
     var self = this;
     setTimeout(function() {
       self.event.detail.currentItemIndex = self.currentItemIndex;
