@@ -230,3 +230,5 @@ Plese see [CONTRIBUTING.md](https://github.com/peduarte/wallop/blob/master/CONTR
 
 ## Licensing
 MIT © 2015 [Pedro Duarte](http://pedroduarte.me)
+
+test edit
