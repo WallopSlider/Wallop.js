@@ -1,0 +1,41 @@
+{
+  "name": "wallop",
+  "description": "wallop is a minimal 4kb library for showing & hiding things",
+  "main": [
+    "js/Wallop.js",
+    "css/wallop.css"
+  ],
+  "moduleType": [
+    "node",
+    "es6"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "examples",
+    "node_modules",
+    ".editorconfig",
+    ".gitignore",
+    ".travis.yml",
+    ".zuul.yml",
+    "CONTRIBUTING.md",
+    "package.json",
+    "test.js"
+  ],
+  "keywords": [
+    "slider",
+    "css",
+    "js",
+    "minimal",
+    "responsive",
+    "wallop"
+  ],
+  "author": "Pedro Duarte <contact@peduarte.com> (http://pedroduarte.me)",
+  "bugs": {
+    "url": "https://github.com/peduarte/wallop/issues"
+  },
+  "homepage": "http://pedroduarte.me/wallop",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peduarte/wallop.git"
+  }
+}
