@@ -70,12 +70,12 @@ Once you have downloaded Wallop, the first thing you need to do is include the C
 
 ### commonJS
 ```js
-  var Wallop = require('Wallop');
+  var Wallop = require('wallop');
 ```
 
 ### ES6
 ```js
-  import Wallop from 'Wallop';
+  import Wallop from 'wallop';
 ```
 
 ### HTML
