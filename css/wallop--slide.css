@@ -43,184 +43,96 @@
 
 @-webkit-keyframes slideFromLeft {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    -moz-transform: translate3d(-100%, 0, 0);
-    -ms-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    left: -100%;
   }
 }
 
 @-moz-keyframes slideFromLeft {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    -moz-transform: translate3d(-100%, 0, 0);
-    -ms-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    left: -100%;
   }
 }
 
 @-ms-keyframes slideFromLeft {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    -moz-transform: translate3d(-100%, 0, 0);
-    -ms-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    left: -100%;
   }
 }
 
 @keyframes slideFromLeft {
   0% {
-    -webkit-transform: translate3d(-100%, 0, 0);
-    -moz-transform: translate3d(-100%, 0, 0);
-    -ms-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    left: -100%;
   }
 }
 
 @-webkit-keyframes slideFromRight {
   0% {
-    -webkit-transform: translate3d(100%, 0, 0);
-    -moz-transform: translate3d(100%, 0, 0);
-    -ms-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    left: 100%;
   }
 }
 
 @-moz-keyframes slideFromRight {
   0% {
-    -webkit-transform: translate3d(100%, 0, 0);
-    -moz-transform: translate3d(100%, 0, 0);
-    -ms-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    left: 100%;
   }
 }
 
 @-ms-keyframes slideFromRight {
   0% {
-    -webkit-transform: translate3d(100%, 0, 0);
-    -moz-transform: translate3d(100%, 0, 0);
-    -ms-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    left: 100%;
   }
 }
 
 @keyframes slideFromRight {
   0% {
-    -webkit-transform: translate3d(100%, 0, 0);
-    -moz-transform: translate3d(100%, 0, 0);
-    -ms-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    left: 100%;
   }
 }
 
 @-webkit-keyframes slideToLeft {
-  99% {
-    opacity: 1;
-  }
-
   100% {
-    opacity: 0;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    -moz-transform: translate3d(-100%, 0, 0);
-    -ms-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    left: -100%;
   }
 }
 
 @-moz-keyframes slideToLeft {
-  99% {
-    opacity: 1;
-  }
-
   100% {
-    opacity: 0;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    -moz-transform: translate3d(-100%, 0, 0);
-    -ms-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    left: -100%;
   }
 }
 
 @-ms-keyframes slideToLeft {
-  99% {
-    opacity: 1;
-  }
-
   100% {
-    opacity: 0;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    -moz-transform: translate3d(-100%, 0, 0);
-    -ms-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    left: -100%;
   }
 }
 
 @keyframes slideToLeft {
-  99% {
-    opacity: 1;
-  }
-
   100% {
-    opacity: 0;
-    -webkit-transform: translate3d(-100%, 0, 0);
-    -moz-transform: translate3d(-100%, 0, 0);
-    -ms-transform: translate3d(-100%, 0, 0);
-    transform: translate3d(-100%, 0, 0);
+    left: -100%;
   }
 }
 
 @-webkit-keyframes slideToRight {
-  99% {
-    opacity: 1;
-  }
-
   100% {
-    opacity: 0;
-    -webkit-transform: translate3d(100%, 0, 0);
-    -moz-transform: translate3d(100%, 0, 0);
-    -ms-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    left: 100%;
   }
 }
 
 @-moz-keyframes slideToRight {
-  99% {
-    opacity: 1;
-  }
-
   100% {
-    opacity: 0;
-    -webkit-transform: translate3d(100%, 0, 0);
-    -moz-transform: translate3d(100%, 0, 0);
-    -ms-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    left: 100%;
   }
 }
 
 @-ms-keyframes slideToRight {
-  99% {
-    opacity: 1;
-  }
-
   100% {
-    opacity: 0;
-    -webkit-transform: translate3d(100%, 0, 0);
-    -moz-transform: translate3d(100%, 0, 0);
-    -ms-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    left: 100%;
   }
 }
 
 @keyframes slideToRight {
-  99% {
-    opacity: 1;
-  }
-
   100% {
-    opacity: 0;
-    -webkit-transform: translate3d(100%, 0, 0);
-    -moz-transform: translate3d(100%, 0, 0);
-    -ms-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0);
+    left: 100%;
   }
 }
